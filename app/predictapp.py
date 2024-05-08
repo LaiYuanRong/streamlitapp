@@ -4,9 +4,6 @@ import streamlit as st
 from pyecharts.charts import Bar, Grid, Gauge
 from pyecharts import options as opts
 from streamlit_echarts import st_pyecharts
-import os
-
-path = os.getcwd().replace("\\", "/")
 
 import pandas as pd
 
@@ -50,7 +47,7 @@ def gauge(title, v):
 
     st_pyecharts(g, height=460)
 
-with open(path+'/逻辑回归模型.pkl', 'rb') as f:
+with open('app/逻辑回归模型.pkl', 'rb') as f:
     model = pickle.load(f)
 
 col = ['Age', 'Previously_Insured', 'Vehicle_Age', 'Vehicle_Damage', 'Annual_Premium', 'Vintage']
@@ -94,6 +91,6 @@ t = '''              precision    recall  f1-score   support
 weighted avg       1.00      0.88      0.93    114333'''
 
 with st.expander("模型特征重要性与评估", True):
-    st.image("特征重要性.png", use_column_width=True)
+    st.image("app/特征重要性.png", use_column_width=True)
     st.write(t.splitlines())
     
